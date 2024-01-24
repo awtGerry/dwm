@@ -17,10 +17,20 @@ static const char col_gray2[]       = "#26233a";
 static const char col_gray3[]       = "#6e6a86";
 static const char col_gray4[]       = "#e0def4";
 static const char col_cyan[]        = "#31748f";
+
+/* ==[ Define custom colors ]== */
+/* Rose-pine (dark) */
+// static const char base[]         = "#191724"; // Background (black)
+// static const char text[]         = "#e0def4"; // Foreground (white)
+// static const char pine[]         = "#31748f"; // Default system (blue)
+// static const char love[]         = "#eb6f92"; // Secondary (red)
+// static const char gold[]         = "#f6c177"; // Active (yellow)
+// static const char iris[]         = "#c4a7e7"; // Accent (purple)
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray2, col_cyan,  col_cyan  },
 };
 
 /* tagging */
