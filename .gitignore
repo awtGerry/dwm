@@ -1,1 +1,3 @@
 patches
+*.rej
+*.orig
