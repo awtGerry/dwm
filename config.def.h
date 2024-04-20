@@ -22,7 +22,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 
 static const char *fonts[] = {
-    "Noto Sans:pixelsize=16:antialias=true:autohint=true",
+    "Fira Code Nerd Font Mono:pixelsize=16:antialias=true:autohint=true",
     "JoyPixels:pixelsize=16:antialias=true:autohint=true"
 };
 
