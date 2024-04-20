@@ -23,7 +23,6 @@ static const int showsystray        = 1;        /* 0 means no systray */
 
 static const char *fonts[] = {
     "Fira Code Nerd Font Mono:pixelsize=16:antialias=true:autohint=true",
-    "JoyPixels:pixelsize=16:antialias=true:autohint=true"
 };
 
 /* ==[ Define custom colors ]== */
