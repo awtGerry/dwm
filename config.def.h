@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#define TERM "kitty"
+
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -22,8 +24,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 
 static const char *fonts[] = {
-    "Noto Sans:pixelsize=12:antialias=true:autohint=true",
-    "JoyPixels:pixelsize=12:antialias=true:autohint=true"
+    "Font Awesome 6 Free Solid:pixelsize=12:antialias=true:autohint=true",
 };
 
 /* ==[ Define custom colors ]== */
@@ -38,8 +39,8 @@ static const char iris[]         = "#c4a7e7"; // Accent (purple)
 
 static const char *colors[][3]      = {
 	/*               fg         bg          border   */
-	[SchemeNorm] = { text,      base,       gold    },
-	[SchemeSel]  = { text,      pine,       pine    },
+	[SchemeNorm] = { text,      base,       love    },
+	[SchemeSel]  = { text,      pine,       gold    },
 };
 
 /* tagging */
@@ -105,11 +106,20 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ControlMask,           XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
+    { MODKEY,                       XK_Print,  spawn,          SHCMD("screenshot") },
+    { MODKEY,                       XK_BackSpace, spawn,       SHCMD("powermenu") },
 
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY|ControlMask,           XK_q,      quit,           {0} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = webcmd } },
+	{ MODKEY|ControlMask,           XK_w,      spawn,          {.v = (static const char[]) { "chromium", NULL } } },
+	{ MODKEY,                       XK_e,      spawn,          {.v = (static const char[]) { TERM, "-e", "nvim", NULL } } },
+	{ MODKEY,                       XK_a,      spawn,          {.v = (static const char[]) { TERM, "-e", "pulsemixer", NULL } } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
+	{ MODKEY,                       XK_s,      spawn,          {.v = (static const char[]) { "rofi-wp", NULL } } },
+	{ MODKEY,                       XK_b,      spawn,          {.v = (static const char[]) { "bluetoothctl", NULL } } },
+	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = (static const char[]) { "spotify", NULL } } },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = (static const char[]) { TERM, "-e", "btop", NULL } } },
 	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
 
 	{ MODKEY,                       XK_s,      togglesticky,   {0} },
@@ -147,9 +157,9 @@ static const Key keys[] = {
     /* Layouts */
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_y,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ShiftMask,             XK_y,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 
