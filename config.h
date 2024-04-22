@@ -24,7 +24,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 
 static const char *fonts[] = {
-    "Font Awesome 6 Free Solid:pixelsize=12:antialias=true:autohint=true",
+    "Font Awesome 6 Free Solid:pixelsize=12:antialias=true:autohint=true", // Icons
+    "Inter:pixelsize=12:antialias=true:autohint=true" // Text
 };
 
 /* ==[ Define custom colors ]== */
@@ -44,10 +45,10 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-    "xset r rate 300 50", NULL,
-    "dunst", NULL,
-	"xwallpaper ~/Pictures/Wallpapers/white.png", NULL,
-    "~/Dev/public/mybar/target/release/mybar", NULL, // Until I release a complete stable version this will be like this.
+    "sh", "-c", "xset r rate 300 50", NULL,
+    "sh", "-c", "dunst", NULL,
+	"sh", "-c", "xwallpaper ~/Pictures/Wallpapers/white.png", NULL,
+    "sh", "-c", "~/Dev/public/mybar/target/release/mybar", NULL, // Until I release a complete stable version this will be like this.
 	NULL /* terminate */
 };
 
