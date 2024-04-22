@@ -24,8 +24,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 
 static const char *fonts[] = {
-    "Font Awesome 6 Free Solid:pixelsize=12:antialias=true:autohint=true", // Icons
     "Inter:pixelsize=12:antialias=true:autohint=true" // Text
+    "Font Awesome 6 Free Solid:pixelsize=12:antialias=true:autohint=true", // Icons
 };
 
 /* ==[ Define custom colors ]== */
@@ -189,8 +189,12 @@ static const Key keys[] = {
     { 0,                            XF86XK_AudioPlay, spawn, SHCMD("playerctl play-pause") },
     { 0,                            XF86XK_AudioNext, spawn, SHCMD("playerctl next") },
     { 0,                            XF86XK_AudioPrev, spawn, SHCMD("playerctl previous") },
-    { 0,                            XF86XK_MonBrightnessUp, spawn, SHCMD("light -A 5") },
-    { 0,                            XF86XK_MonBrightnessDown, spawn, SHCMD("light -U 5") },
+    { 0,                            XF86XK_MonBrightnessUp, spawn, SHCMD("brightnessctl set 10%+") },
+    { 0,                            XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl set 10%-") },
+    { 0,                            XF86XK_Display, spawn, SHCMD("displayopt") },
+    { 0,                            XF86XK_TouchpadToggle, spawn, SHCMD("touchpad-toggle") },
+    { 0,                            XF86XK_TouchpadOff, spawn, SHCMD("touchpad-off") },
+    { 0,                            XF86XK_TouchpadOn, spawn, SHCMD("touchpad-on") },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
