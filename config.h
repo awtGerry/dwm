@@ -43,6 +43,14 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { text,      pine,       gold    },
 };
 
+static const char *const autostart[] = {
+    "xset r rate 300 50", NULL,
+    "dunst", NULL,
+	"xwallpaper ~/Pictures/Wallpapers/white.png", NULL,
+    "~/Dev/public/mybar/target/release/mybar", NULL, // Until I release a complete stable version this will be like this.
+	NULL /* terminate */
+};
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -64,6 +72,7 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
+#include <X11/XF86keysym.h>
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -170,6 +179,17 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+
+    /* Multimedia keys */
+    // TODO: actually think of this, for now this keys are not working in current version 
+    { 0,                            XF86XK_AudioMute, spawn, SHCMD("pamixer -t") },
+    { 0,                            XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer -i 5") },
+    { 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer -d 5") },
+    { 0,                            XF86XK_AudioPlay, spawn, SHCMD("playerctl play-pause") },
+    { 0,                            XF86XK_AudioNext, spawn, SHCMD("playerctl next") },
+    { 0,                            XF86XK_AudioPrev, spawn, SHCMD("playerctl previous") },
+    { 0,                            XF86XK_MonBrightnessUp, spawn, SHCMD("light -A 5") },
+    { 0,                            XF86XK_MonBrightnessDown, spawn, SHCMD("light -U 5") },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
