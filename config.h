@@ -29,7 +29,7 @@ static const char *fonts[] = {
 
 /* ==[ Define custom colors ]== */
 /* Rose-pine (dark) */
-static const char base[]         = "#191724"; // Background (black)
+static const char base[]         = "#02182f"; // Background (black)
 static const char overlay[]      = "#26233a"; // Overlay (dark grey)
 static const char text[]         = "#e0def4"; // Foreground (white)
 static const char pine[]         = "#31748f"; // Default system (blue)
