@@ -24,7 +24,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 
 static const char *fonts[] = {
-    "Font Awesome 6 Free Solid:pixelsize=12:antialias=true:autohint=true", // Icons
+    "Font Awesome 6 Free Solid:pixelsize=14:antialias=true:autohint=true", // Icons
 };
 
 /* ==[ Define custom colors ]== */
@@ -38,15 +38,20 @@ static const char gold[]         = "#f6c177"; // Active (yellow)
 static const char iris[]         = "#c4a7e7"; // Accent (purple)
 
 static const char *colors[][3]      = {
-	/*               fg         bg          border   */
-	[SchemeNorm] = { text,      base,       love    },
-	[SchemeSel]  = { text,      pine,       gold    },
+	/*                      fg         bg          border   */
+	[SchemeNorm]        = { text,      base,       love    },
+	[SchemeSel]         = { text,      pine,       gold    },
+	[SchemeStatus]      = { text,      base,       "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+	[SchemeTagsSel]     = { gold,      overlay,    "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+	[SchemeTagsNorm]    = { text,      base,       "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+	[SchemeInfoSel]     = { text,      base,       "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+	[SchemeInfoNorm]    = { text,      base,       "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 static const char *const autostart[] = {
     "sh", "-c", "xset r rate 300 50", NULL,
     "sh", "-c", "dunst", NULL,
-	"sh", "-c", "xwallpaper --zoom ~/Pictures/Wallpapers/white.png", NULL,
+	"sh", "-c", "xwallpaper --zoom ~/Pictures/Wallpapers/cube.jpg", NULL,
     "sh", "-c", "~/Dev/public/mybar/target/release/mybar", NULL, // Until I release a complete stable version this will be like this.
 	NULL /* terminate */
 };
@@ -61,7 +66,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating      monitor */
 	{ "Gimp",     NULL,       NULL,       1 << 4,       0,              -1  },
-	{ "Firefox",  NULL,       NULL,       1 << 1,       0,              2   },
+	{ "Firefox",  NULL,       NULL,       1 << 1,       0,              1   },
 };
 
 /* layout(s) */
@@ -140,35 +145,35 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 
     /* Gaps */
 	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
 	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
 	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
-	{ MODKEY|Mod4Mask,              XK_u,      incrgaps,       {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_u,      incrgaps,       {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_i,      incrigaps,      {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_i,      incrigaps,      {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_o,      incrogaps,      {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_o,      incrogaps,      {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_6,      incrihgaps,     {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_6,      incrihgaps,     {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_7,      incrivgaps,     {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_7,      incrivgaps,     {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_8,      incrohgaps,     {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_8,      incrohgaps,     {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_9,      incrovgaps,     {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_9,      incrovgaps,     {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_0,      togglegaps,     {0} },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
+	{ MODKEY,                       XK_u,      incrgaps,       {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_u,      incrgaps,       {.i = -1 } },
+	{ MODKEY,                       XK_i,      incrigaps,      {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_i,      incrigaps,      {.i = -1 } },
+	{ MODKEY,                       XK_o,      incrogaps,      {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_o,      incrogaps,      {.i = -1 } },
+	{ MODKEY,                       XK_6,      incrihgaps,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_6,      incrihgaps,     {.i = -1 } },
+	{ MODKEY,                       XK_7,      incrivgaps,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_7,      incrivgaps,     {.i = -1 } },
+	{ MODKEY,                       XK_8,      incrohgaps,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_8,      incrohgaps,     {.i = -1 } },
+	{ MODKEY,                       XK_9,      incrovgaps,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_9,      incrovgaps,     {.i = -1 } },
+	{ MODKEY,                       XK_0,      togglegaps,     {0} },
+	{ MODKEY|ShiftMask,             XK_0,      defaultgaps,    {0} },
 
     /* Layouts */
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_y,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|ShiftMask,             XK_y,      setlayout,      {.v = &layouts[4]} },
-	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 
@@ -194,6 +199,7 @@ static const Key keys[] = {
     { 0,                            XF86XK_TouchpadToggle, spawn, SHCMD("touchpad-toggle") },
     { 0,                            XF86XK_TouchpadOff, spawn, SHCMD("touchpad-off") },
     { 0,                            XF86XK_TouchpadOn, spawn, SHCMD("touchpad-on") },
+    { 0,                            XK86XK_Bluetooth, spawn, SHCMD("bluetoothctl") },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
@@ -223,4 +229,3 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
