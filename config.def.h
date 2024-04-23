@@ -199,7 +199,7 @@ static const Key keys[] = {
     { 0,                            XF86XK_TouchpadToggle, spawn, SHCMD("touchpad-toggle") },
     { 0,                            XF86XK_TouchpadOff, spawn, SHCMD("touchpad-off") },
     { 0,                            XF86XK_TouchpadOn, spawn, SHCMD("touchpad-on") },
-    { 0,                            XK86XK_Bluetooth, spawn, SHCMD("bluetoothctl") },
+    // { 0,                            XK86XK_Bluetooth, spawn, SHCMD("bluetoothctl") },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
