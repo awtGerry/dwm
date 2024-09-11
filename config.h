@@ -24,7 +24,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 
 static const char *fonts[] = {
-    "Font Awesome 6 Free Solid:pixelsize=14:antialias=true:autohint=true", // Icons
+    "Inter:pixelsize=12:antialias=true:autohint=true", // Main font
+    "Font Awesome 6 Free Solid:pixelsize=12:antialias=true:autohint=true", // Icons
 };
 
 /* ==[ Define custom colors ]== */
@@ -51,13 +52,13 @@ static const char *colors[][3]      = {
 static const char *const autostart[] = {
     "sh", "-c", "xset r rate 300 50", NULL,
     "sh", "-c", "dunst", NULL,
-	"sh", "-c", "xwallpaper --zoom ~/Pictures/Wallpapers/cube.jpg", NULL,
+	"sh", "-c", "xwallpaper --zoom ~/Pictures/.wallpaper", NULL,
     "sh", "-c", "~/Dev/public/mybar/target/release/mybar", NULL, // Until I release a complete stable version this will be like this.
 	NULL /* terminate */
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "", "", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -66,7 +67,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating      monitor */
 	{ "Gimp",     NULL,       NULL,       1 << 4,       0,              -1  },
-	{ "Firefox",  NULL,       NULL,       1 << 1,       0,              1   },
+	{ "Firefox",  NULL,       NULL,       1 << 1,       0,              -1   },
+    { "chromium", NULL,       NULL,       1 << 2,       0,              -1   },
 };
 
 /* layout(s) */
@@ -136,7 +138,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = (const char*[]) { TERM, "-e", "btop", NULL } } },
 	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
 
-	{ MODKEY,                       XK_s,      togglesticky,   {0} },
+	{ MODKEY|ShiftMask,             K_s,      togglesticky,   {0} },
 
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
