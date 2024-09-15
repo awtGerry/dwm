@@ -138,7 +138,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = (const char*[]) { TERM, "-e", "btop", NULL } } },
 	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
 
-	{ MODKEY|ShiftMask,             K_s,      togglesticky,   {0} },
+	{ MODKEY|ShiftMask,             XK_s,      togglesticky,   {0} },
 
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
