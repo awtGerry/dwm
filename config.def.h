@@ -1,6 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 
-#define TERM "kitty"
+/* TODO: Does home-cfg could handle this? */
+
+#define TERM "ghostty"
+#define EDITOR "helix"
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
@@ -24,8 +27,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 
 static const char *fonts[] = {
-    "Inter:pixelsize=12:antialias=true:autohint=true", // Main font
-    "Font Awesome 6 Free Solid:pixelsize=12:antialias=true:autohint=true", // Icons
+    "SF Pro Display:pixelsize=9:antialias=true",
+    "Font Awesome 6 Free Solid:pixelsize=9:antialias=true:autohint=true", // Icons
 };
 
 /* ==[ Define custom colors ]== */
@@ -41,7 +44,7 @@ static const char iris[]         = "#c4a7e7"; // Accent (purple)
 static const char *colors[][3]      = {
 	/*                      fg         bg          border   */
 	[SchemeNorm]        = { text,      base,       love    },
-	[SchemeSel]         = { text,      pine,       gold    },
+	[SchemeSel]         = { text,      base,       gold    },
 	[SchemeStatus]      = { text,      base,       "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeTagsSel]     = { gold,      overlay,    "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
 	[SchemeTagsNorm]    = { text,      base,       "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
@@ -49,16 +52,17 @@ static const char *colors[][3]      = {
 	[SchemeInfoNorm]    = { text,      base,       "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
+/* Configure autostrt programs */
 static const char *const autostart[] = {
     "sh", "-c", "xset r rate 300 50", NULL,
     "sh", "-c", "dunst", NULL,
-	"sh", "-c", "xwallpaper --zoom ~/Pictures/.wallpaper", NULL,
+    "sh", "-c", "xwallpaper --zoom ~/Pictures/.wallpaper", NULL,
     "sh", "-c", "~/Dev/public/mybar/target/release/mybar", NULL, // Until I release a complete stable version this will be like this.
 	NULL /* terminate */
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -68,7 +72,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating      monitor */
 	{ "Gimp",     NULL,       NULL,       1 << 4,       0,              -1  },
 	{ "Firefox",  NULL,       NULL,       1 << 1,       0,              -1   },
-    { "chromium", NULL,       NULL,       1 << 2,       0,              -1   },
+  { "chromium", NULL,       NULL,       1 << 2,       0,              -1   },
 };
 
 /* layout(s) */
@@ -113,7 +117,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *roficmd[]  = { "rofi", "-show", "drun", NULL };
-static const char *termcmd[]  = { "kitty", NULL };
+static const char *termcmd[]  = { TERM, NULL };
 static const char *webcmd[]  = { "firefox", NULL };
 static const char *layoutmenu_cmd = "layoutmenu.sh";
 
@@ -122,14 +126,13 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ControlMask,           XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-    { MODKEY,                       XK_Print,  spawn,          SHCMD("screenshot") },
-    { MODKEY,                       XK_BackSpace, spawn,       SHCMD("powermenu") },
+  { MODKEY,                       XK_Print,  spawn,          SHCMD("screenshot") },
+  { MODKEY,                       XK_BackSpace, spawn,       SHCMD("powermenu") },
 
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY|ControlMask,           XK_q,      quit,           {0} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = webcmd } },
-	{ MODKEY|ControlMask,           XK_w,      spawn,          {.v = (const char*[]) { "chromium", NULL } } },
-	{ MODKEY,                       XK_e,      spawn,          {.v = (const char*[]) { TERM, "-e", "nvim", NULL } } },
+	{ MODKEY,                       XK_e,      spawn,          {.v = (const char*[]) { TERM, "-e", EDITOR, NULL } } },
 	{ MODKEY,                       XK_a,      spawn,          {.v = (const char*[]) { TERM, "-e", "pulsemixer", NULL } } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = (const char*[]) { "rofi-wp", NULL } } },
