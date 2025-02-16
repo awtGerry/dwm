@@ -27,8 +27,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 
 static const char *fonts[] = {
-    "SF Pro Display:pixelsize=9:antialias=true",
-    "Font Awesome 6 Free Solid:pixelsize=9:antialias=true:autohint=true", // Icons
+    "SF Pro Display:pixelsize=11:antialias=true",
+    "Font Awesome 6 Free Solid:pixelsize=11:antialias=true:autohint=true", // Icons
 };
 
 /* ==[ Define custom colors ]== */
@@ -43,8 +43,8 @@ static const char iris[]         = "#c4a7e7"; // Accent (purple)
 
 static const char *colors[][3]      = {
 	/*                      fg         bg          border   */
-	[SchemeNorm]        = { text,      base,       love    },
-	[SchemeSel]         = { text,      base,       gold    },
+	[SchemeNorm]        = { text,      base,       base    },
+	[SchemeSel]         = { text,      base,       pine    },
 	[SchemeStatus]      = { text,      base,       "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeTagsSel]     = { gold,      overlay,    "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
 	[SchemeTagsNorm]    = { text,      base,       "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
